@@ -15,4 +15,12 @@ class ToDoViewModel() : ViewModel() {
         repo.addNewProductStaticly(p)
         stateList.add(p)
     }
+    fun updateToDo(index: Int, value: Boolean) {
+        repo.updateOneTask(index,value)
+        stateList[index] = stateList[index].copy(isUrgent = value)
+    }
+    fun deleteToDo(todo: ToDo) {
+        repo.deleteOneTask(todo)
+        stateList.remove(todo)
+    }
 }

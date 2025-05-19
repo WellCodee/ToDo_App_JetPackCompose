@@ -34,7 +34,12 @@ fun MyApp(vm: Lazy<ToDoViewModel>) {
     val navController = rememberNavController()
     NavHost(navController, startDestination = "ListOfToDo") {
         composable("ListOfToDo") { backStackEntry ->
-            AppUIScreen(navController,vm.value.stateList)
+            AppUIScreen(navController,vm.value.stateList, onSwitch = { id,value ->
+                vm.value.updateToDo(id,value)
+            },onDelete = { todelete->
+                vm.value.deleteToDo(todelete)
+
+            })
         }
         composable("AddNewToDo") {
             AddNewToDoScreen(navController) { n,d,i ->
